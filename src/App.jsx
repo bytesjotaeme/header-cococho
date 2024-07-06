@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/common/Header';
+import Footer from './components/common/Footer'; // Importa el Footer aquí
 import Newsletter from './components/common/Newsletter';
 import PromotionsSlider from './components/common/PromotionsSlider';
 import Bebes from './pages/Bebes/Bebes';
@@ -19,7 +20,7 @@ function App() {
             <Router>
                 <div className="App">
                     <Header />
-                    <Cart /> {/* El carrito sigue estando siempre visible */}
+                    <Cart />
                     <Routes>
                         <Route path="/" element={
                             <>
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
                     </Routes>
+                    <Footer /> {/* Agrega el Footer aquí */}
                 </div>
             </Router>
         </CartProvider>
