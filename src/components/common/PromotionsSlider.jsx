@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import './PromotionSlider.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -35,10 +36,10 @@ const PromotionsSlider = () => {
             <h1>REDES SOCIALES</h1>
             <div className="social-icons">
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                <img src="/src/assets/images/instagram-icon.png" alt="Instagram" className="social-icon"/>
+                <FaInstagram className="social-icon"/>
               </a>
               <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <img src="/src/assets/images/facebook-icon.png" alt="Facebook" className="social-icon"/>
+                <FaFacebook className="social-icon"/>
               </a>
             </div>
           </div>
