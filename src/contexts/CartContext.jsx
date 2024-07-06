@@ -1,42 +1,51 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
 const CartContext = createContext();
 
-export const useCart = () => useContext(CartContext);
+const initialState = {
+    cart: [],
+    isCartOpen: false
+};
+
+const cartReducer = (state, action) => {
+    switch (action.type) {
+        case 'ADD_ITEM':
+            const itemExists = state.cart.find(item => item.id === action.payload.id);
+            return {
+                ...state,
+                cart: itemExists 
+                    ? state.cart.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item)
+                    : [...state.cart, { ...action.payload, quantity: 1 }],
+                isCartOpen: true
+            };
+
+        case 'REMOVE_ITEM':
+            return {...state, cart: state.cart.filter(item => item.id !== action.payload)};
+
+        case 'UPDATE_QUANTITY':
+            return {...state, cart: state.cart.map(item => item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item)};
+
+        case 'TOGGLE_CART':
+            return {...state, isCartOpen: !state.isCartOpen};
+
+        default:
+            throw new Error(`Unhandled action type: ${action.type}`);
+    }
+};
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [state, dispatch] = useReducer(cartReducer, initialState);
 
-    const addToCart = (product, quantity = 1) => {
-        setCart(prevCart => {
-            const existingProduct = prevCart.find(item => item.id === product.id);
-            if (existingProduct) {
-                return prevCart.map(item =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
-                );
-            } else {
-                return [...prevCart, { ...product, quantity }];
-            }
-        });
-        setIsCartOpen(true);
-    };
-
-    const removeFromCart = (productId) => {
-        setCart(prevCart => prevCart.filter(item => item.id !== productId));
-    };
-
-    const updateQuantity = (productId, quantity) => {
-        setCart(prevCart => prevCart.map(item =>
-            item.id === productId ? { ...item, quantity: Math.max(quantity, 1) } : item
-        ));
-    };
-
-    const total = cart.reduce((acc, item) => acc + item.quantity * item.discountPrice, 0);
+    const addToCart = product => dispatch({ type: 'ADD_ITEM', payload: product });
+    const removeFromCart = id => dispatch({ type: 'REMOVE_ITEM', payload: id });
+    const updateQuantity = (id, quantity) => dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+    const toggleCart = () => dispatch({ type: 'TOGGLE_CART' });
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, total, isCartOpen, setIsCartOpen }}>
+        <CartContext.Provider value={{ ...state, addToCart, removeFromCart, updateQuantity, toggleCart }}>
             {children}
         </CartContext.Provider>
     );
 };
+
+export const useCart = () => useContext(CartContext);

@@ -1,103 +1,105 @@
-.cart {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 400px;
-    height: 100%;
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(100%);
-}
-
-.cart.open {
-    display: block;
-    transform: translateX(0);
-}
-
-.overlay {
+.cartOverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.cartContent {
+.cart {
+    background-color: #fff;
+    width: 80%;
+    max-width: 400px;
     padding: 20px;
-    height: 100%;
-    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: auto;
+    max-height: 80vh;
+    transition: transform 0.3s ease-in-out;
 }
 
 .closeButton {
-    background: none;
-    border: none;
-    font-size: 24px;
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
-}
-
-.cart h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    color: #333;
 }
 
 .cartItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
 }
 
-.cartItem img {
-    width: 50px;
-    height: auto;
+.cartItemImage {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 50%;
 }
 
-.cartItem h3 {
+.cartItem h4 {
     font-size: 16px;
-    margin: 0;
+    margin-bottom: 5px;
 }
 
 .cartItem p {
-    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
 
-.quantity {
+.quantityControl {
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
-.quantity button {
-    background-color: #ddd;
-    border: none;
-    padding: 5px 10px;
+.quantityControl button {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
-.quantity span {
+.quantityControl span {
     margin: 0 10px;
+    font-size: 16px;
 }
 
 .removeButton {
-    background-color: red;
+    background-color: #ff4500;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .total {
     text-align: center;
-    font-size: 18px;
-    margin-top: 20px;
+    padding: 20px;
+}
+
+.whatsappLink {
+    background-color: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 15px;
 }

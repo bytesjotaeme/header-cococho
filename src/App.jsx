@@ -19,7 +19,7 @@ function App() {
             <Router>
                 <div className="App">
                     <Header />
-                    <Cart /> {/* Agregamos el carrito aquí */}
+                    <Cart /> {/* El carrito sigue estando siempre visible */}
                     <Routes>
                         <Route path="/" element={
                             <>
@@ -27,6 +27,7 @@ function App() {
                                 <Newsletter />
                             </>
                         } />
+                        <Route path="/cart" element={<Cart asPage={true} />} />
                         <Route path="/bebes" element={<Bebes />} />
                         <Route path="/ninas" element={<Ninas />} />
                         <Route path="/ninos" element={<Ninos />} />
