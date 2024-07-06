@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/images/Daraz-logo.png'; // Ajusta la ruta según la ubicación del logo
 
@@ -9,21 +10,21 @@ const Header = () => {
                 <img src={logo} alt="Cococho Logo" />
             </div>
             <nav className="header__nav">
-                <a href="/">INICIO</a>
-                <a href="/bebes">BEBÉS</a>
-                <a href="/ninas">NIÑAS</a>
-                <a href="/ninos">NIÑOS</a>
-                <a href="/accesorios">ACCESORIOS</a>
-                <a href="/juguetes">JUGUETES</a>
+                <Link to="/">INICIO</Link>
+                <Link to="/bebes">BEBÉS</Link>
+                <Link to="/ninas">NIÑAS</Link>
+                <Link to="/ninos">NIÑOS</Link>
+                <Link to="/accesorios">ACCESORIOS</Link>
+                <Link to="/juguetes">JUGUETES</Link>
             </nav>
             <div className="header__actions">
                 <input type="text" placeholder="Search" className="header__search" />
-                <a href="/login" className="header__login">Iniciar sesión</a>
+                <Link to="/login" className="header__login">Iniciar sesión</Link>
                 <div className="header__cart">
-                    <a href="/cart">
+                    <Link to="/cart">
                         <span className="header__cart-icon"></span>
                         <span className="header__cart-count">0</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </header>
@@ -31,3 +32,4 @@ const Header = () => {
 };
 
 export default Header;
+

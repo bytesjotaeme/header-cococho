@@ -1,0 +1,103 @@
+.cart {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+}
+
+.cart.open {
+    display: block;
+    transform: translateX(0);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.cartContent {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.cart h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cartItem img {
+    width: 50px;
+    height: auto;
+}
+
+.cartItem h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.cartItem p {
+    margin: 0;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quantity span {
+    margin: 0 10px;
+}
+
+.removeButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.total {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
