@@ -1,0 +1,123 @@
+/* src/assets/styles/Header.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+}
+
+.header__logo img {
+    height: 50px;
+}
+
+.header__nav a {
+    margin: 0 15px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header__nav a:hover {
+    color: #32CD32; /* Color verde */
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+}
+
+.header__search {
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.header__login {
+    color: #32CD32; /* Color verde */
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header__login:hover {
+    color: #228B22; /* Verde más oscuro */
+}
+
+.header__cart {
+    display: flex;
+    align-items: center;
+}
+
+.header__cart-icon {
+    background: url('/assets/images/cart-icon.png') no-repeat center center;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.header__cart-count {
+    font-weight: bold;
+    color: #000;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header__nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header__nav a {
+        margin: 5px 0;
+    }
+
+    .header__actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header__search {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .header__login {
+        margin-right: 0;
+    }
+
+    .header__cart {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__logo img {
+        height: 40px;
+    }
+
+    .header__nav a {
+        font-size: 14px;
+    }
+
+    .header__search {
+        padding: 3px;
+    }
+
+    .header__cart-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header__cart-count {
+        font-size: 12px;
+    }
+}
