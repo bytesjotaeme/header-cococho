@@ -13,6 +13,9 @@ import Juguetes from './pages/Juguetes/Juguetes';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './components/common/Cart';
 import './assets/styles/global.css';
+import ProductosDestacados from './components/common/ProductosDestacados';
+import PublicidadSlider from './components/common/PublicidadSlider';
+import Categorias from './components/common/Categorias';
 
 function App() {
     return (
@@ -25,6 +28,9 @@ function App() {
                         <Route path="/" element={
                             <>
                                 <PromotionsSlider />
+                                <ProductosDestacados />
+                                <Categorias />
+                                <PublicidadSlider />
                                 <Newsletter />
                             </>
                         } />
