@@ -12,7 +12,7 @@ import Accesorios from './pages/Accesorios/Accesorios';
 import Juguetes from './pages/Juguetes/Juguetes';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './components/common/Cart';
-import './assets/styles/global.css';
+// import './assets/styles/global.css';
 
 function App() {
     return (
