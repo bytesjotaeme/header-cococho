@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Container, Table, Button, Form, Image, Pagination } from "react-bootstrap";
 import {jwtDecode} from 'jwt-decode'; // Import corrected
 import config from '../../utils/config';
@@ -12,7 +12,6 @@ const ProductList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 10;
     const backServerUrl = config.backServerUrl;
-
     useEffect(() => {
        /* const token = localStorage.getItem('token');
         if (!token){
@@ -53,7 +52,6 @@ const ProductList = () => {
                 const data = await response.json();
                 setProducts(data); // Set the products state with the fetched data
                 console.log("Datos de respuesta API: ", data);
-
             } catch (error) {
                 setError(error.message);
                 console.error("Error al traer productos: ", error);
@@ -129,7 +127,7 @@ const ProductList = () => {
                             <td>{product.talle}</td>
                             <td>{product.categoria}</td>
                             <td>
-                                <Link to={`/product/${product._id}`}>
+                                <Link to={`/admin/products/update/${product._id}`}>
                                     <Button variant="primary" className="btn-primary-productlist">Ver Detalles</Button>
                                 </Link>
                             </td>
