@@ -18,6 +18,7 @@ import ProductosDestacados from './components/common/ProductosDestacados';
 import PublicidadSlider from './components/common/PublicidadSlider';
 import Categorias from './components/common/Categorias';
 import ProductAdmin from './pages/Admin/ProductAdmin';
+import ProductEdit from './components/Admin/ProductEdit';
 
 function App() {
     return (
@@ -44,6 +45,8 @@ function App() {
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
                         <Route path="admin/products" element={<ProductAdmin/>}/>
+                        <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
+
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>
