@@ -190,6 +190,16 @@ const ProductEdit = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
+            <Form.Group controlId="formTalle">
+              <Form.Label>Talle</Form.Label>
+              <Form.Control
+                type="text"
+                name="talle"
+                value={editedProduct.talle}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
             <Form.Group controlId="formCategory">
               <Form.Label>Categoría</Form.Label>
               <Form.Control
