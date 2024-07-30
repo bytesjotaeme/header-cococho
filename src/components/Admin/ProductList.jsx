@@ -82,7 +82,7 @@ const ProductList = () => {
 
     return (
         <Container className="container-productlist">
-            <Link to="/product/add">
+            <Link to="/admin/products/add">
                 <Button variant="success">Agregar Producto</Button>
             </Link>
             <h1 className="h1-productlist">Listado Productos</h1>
