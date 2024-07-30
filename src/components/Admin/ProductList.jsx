@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container, Table, Button, Form, Image, Pagination } from "react-bootstrap";
 import {jwtDecode} from 'jwt-decode'; // Import corrected
 import config from '../../utils/config';
-import '../../css/ProductList.css'
+import '../../css/ProductList.css';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -12,24 +12,8 @@ const ProductList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 10;
     const backServerUrl = config.backServerUrl;
+
     useEffect(() => {
-       /* const token = localStorage.getItem('token');
-        if (!token){
-            setError('No token found');
-            return;
-        }
-
-        let userId;
-
-        try {
-            const decodedToken = jwtDecode(token);
-            userId = decodedToken.id;
-            console.log(userId);
-        } catch (error) {
-            setError('Invalid token');
-            console.error("Error al decodificar Token: ", error)
-            return;
-        } */
         const fetchProducts = async () => {
             try {
                 const response = await fetch(`${backServerUrl}admin/products`, {
@@ -59,16 +43,19 @@ const ProductList = () => {
         };
 
         fetchProducts();
-    }, []); // Add backServerUrl as a dependency
+    }, []); // No dependencies needed if backServerUrl is constant
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
+        setCurrentPage(1); // Reset to first page when search term changes
     };
 
+    // Filtrar productos antes de paginarlos
     const filteredProducts = products.filter((product) =>
-        product.nombre.toUpperCase().includes(searchTerm.toUpperCase())
+        product.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Paginación
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
