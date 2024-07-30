@@ -19,6 +19,7 @@ import PublicidadSlider from './components/common/PublicidadSlider';
 import Categorias from './components/common/Categorias';
 import ProductAdmin from './pages/Admin/ProductAdmin';
 import ProductEdit from './components/Admin/ProductEdit';
+import ProductAdd from './components/Admin/ProductAdd';
 
 function App() {
     return (
@@ -46,7 +47,7 @@ function App() {
                         <Route path="/producto/:productId" element={<ProductDetails />} />
                         <Route path="admin/products" element={<ProductAdmin/>}/>
                         <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
-
+                        <Route path="admin/products/add" element={<ProductAdd/>}/>
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>
