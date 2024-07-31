@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer'; // Importa el Footer aquí
@@ -16,6 +17,9 @@ import Cart from './components/common/Cart';
 import ProductosDestacados from './components/common/ProductosDestacados';
 import PublicidadSlider from './components/common/PublicidadSlider';
 import Categorias from './components/common/Categorias';
+import ProductAdmin from './pages/Admin/ProductAdmin';
+import ProductEdit from './components/Admin/ProductEdit';
+import ProductAdd from './components/Admin/ProductAdd';
 
 function App() {
     return (
@@ -41,6 +45,9 @@ function App() {
                         <Route path="/accesorios" element={<Accesorios />} />
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
+                        <Route path="admin/products" element={<ProductAdmin/>}/>
+                        <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
+                        <Route path="admin/products/add" element={<ProductAdd/>}/>
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>
