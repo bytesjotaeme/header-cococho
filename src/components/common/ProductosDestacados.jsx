@@ -1,20 +1,33 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
-import { getProductsByCategory } from '../../data/products';
 import styles from './ProductosDestacados.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ProductosDestacados = () => {
-    const featuredProducts = getProductsByCategory('bebes').slice(0, 10); // Obtener los primeros 10 productos para el slider
+    const [featuredProducts, setFeaturedProducts] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/admin/products/carousel/featured');
+                const data = await response.json();
+                setFeaturedProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: featuredProducts.length > 1, //evita la repetición de elementos
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: Math.min(4, featuredProducts.length),
         slidesToScroll: 1,
         nextArrow: <div className="slick-next" />,
         prevArrow: <div className="slick-prev" />,
@@ -59,13 +72,13 @@ const ProductosDestacados = () => {
             <Slider {...settings}>
                 {featuredProducts.map(product => (
                     <div 
-                        key={product.id} 
+                        key={product._id} 
                         className={styles.productCard}
                     >
-                        <img src={product.img} alt={product.name} className={styles.productImage} />
-                        <h2 className={styles.productName}>{product.name}</h2>
-                        <p className={styles.productPrice}><span>${product.price.toFixed(2)}</span> ${product.discountPrice.toFixed(2)}</p>
-                        <button className={styles.viewProductButton} onClick={() => handleProductClick(product.id)}>VER PRODUCTO</button>
+                        <img src={product.imagenes[0]} alt={product.nombre} className={styles.productImage} />
+                        <h2 className={styles.productName}>{product.nombre}</h2>
+                        <p className={styles.productPrice}><span>${product.precio.toFixed(2)}</span> ${product.promocion.toFixed(2)}</p>
+                        <button className={styles.viewProductButton} onClick={() => handleProductClick(product._id)}>VER PRODUCTO</button>
                         <button className={styles.addButton}>AGREGAR AL CARRO</button>
                     </div>
                 ))}
