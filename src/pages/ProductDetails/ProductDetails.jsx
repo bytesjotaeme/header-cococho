@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '../../hooks/useCart';
 import styles from './ProductDetails.module.css';
 
 const ProductDetails = () => {
@@ -35,7 +35,7 @@ const ProductDetails = () => {
             price: product.precio,
             promotion: product.promocion,
             image: product.imagenes,
-            size: product.size, // Asegúrate de tener este campo o adaptarlo según tu modelo
+            size: product.talle, // Asegúrate de tener este campo o adaptarlo según tu modelo
             quantity: quantity,
         });
     };
@@ -71,7 +71,8 @@ const ProductDetails = () => {
             <div className={styles.detailsContainer}>
                 <h1>{product.nombre}</h1>
                 <p>${product.precio.toFixed(2)} <span>${product.promocion.toFixed(2)}</span></p>
-                <p>{product.description}</p>
+                <p>Talle: {product.talle}</p>
+                <p>{product.descripcion}</p>
                 <div className={styles.purchaseInfo}>
                     <label>
                         Cantidad:
