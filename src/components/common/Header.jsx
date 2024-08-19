@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/images/Daraz-logo.png'; // Ajusta la ruta según la ubicación del logo
+import CartButton from '../CartButton';
 
 const Header = () => {
     return (
@@ -20,12 +21,13 @@ const Header = () => {
             <div className="header__actions">
                 <input type="text" placeholder="Search" className="header__search" />
                 <Link to="/login" className="header__login">Iniciar sesión</Link>
-                <div className="header__cart">
+                <CartButton/>
+                {/* <div className="header__cart">
                     <Link to="/cart">
                         <span className="header__cart-icon"></span>
                         <span className="header__cart-count">0</span>
                     </Link>
-                </div>
+                </div> */}
             </div>
         </header>
     );
