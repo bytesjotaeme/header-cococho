@@ -79,7 +79,7 @@ const ProductosDestacados = () => {
                         <h2 className={styles.productName}>{product.nombre}</h2>
                         <p className={styles.productPrice}><span>${product.precio.toFixed(2)}</span> ${product.promocion.toFixed(2)}</p>
                         <button className={styles.viewProductButton} onClick={() => handleProductClick(product._id)}>VER PRODUCTO</button>
-                        <button className={styles.addButton}>AGREGAR AL CARRO</button>
+                        {/* <button className={styles.addButton}>AGREGAR AL CARRO</button> */}
                     </div>
                 ))}
             </Slider>
