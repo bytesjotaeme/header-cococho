@@ -1,9 +1,9 @@
 // src/components/CartButton.jsx
 import { useState } from 'react';
-import { useCart } from '../hooks/useCart';
+import { useCart } from '../../hooks/useCart';
 import { FaShoppingCart } from 'react-icons/fa'; // Usaremos react-icons para el ícono del carrito
 import CartModal from './CartModal';
-import './Cart-Button.css'
+import '../../css/cart/Cart-Button.css';
 
 const CartButton = () => {
   const [isModalVisible, setModalVisible] = useState(false);

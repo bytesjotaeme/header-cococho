@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/images/Daraz-logo.png'; // Ajusta la ruta según la ubicación del logo
-import CartButton from '../CartButton';
+import CartButton from '../cart/CartButton';
 
 const Header = () => {
     return (
