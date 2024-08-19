@@ -1,7 +1,7 @@
 // src/components/CartModal.jsx
 import PropTypes from 'prop-types';
-import { useCart } from '../hooks/useCart';
-import './Cart-Modal.css';
+import { useCart } from '../../hooks/useCart';
+import '../../css/cart/Cart-Modal.css';
 
 const CartModal = ({ isVisible, onClose }) => {
   const { cartItems, removeFromCart } = useCart();

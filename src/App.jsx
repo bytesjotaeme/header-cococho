@@ -13,7 +13,7 @@ import Ninos from './pages/Ninos/Ninos';
 import Accesorios from './pages/Accesorios/Accesorios';
 import Juguetes from './pages/Juguetes/Juguetes';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import CartModal from './components/CartModal'; // Importa el CartModal
+import CartModal from './components/cart/CartModal'; // Importa el CartModal
 import './assets/styles/global.css';
 import ProductosDestacados from './components/common/ProductosDestacados';
 import PublicidadSlider from './components/common/PublicidadSlider';
