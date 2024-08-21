@@ -23,6 +23,7 @@ import ProductEdit from './components/Admin/ProductEdit';
 import ProductAdd from './components/Admin/ProductAdd';
 import ProductosOferta from './components/common/ProductosOferta';
 import ProductosTemporada from './components/common/ProductosTemporada';
+import EditCarouselImages from './components/common/EditCarouselImages';
 
 function App() {
     return (
@@ -53,6 +54,7 @@ function App() {
                         <Route path="admin/products" element={<ProductAdmin/>}/>
                         <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
                         <Route path="admin/products/add" element={<ProductAdd/>}/>
+                        <Route path="admin/carrusel" element={<EditCarouselImages/>}/>
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>
