@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import axios from "axios";
+import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import config from "../../utils/config";
 import { useEffect, useState } from "react";
 
@@ -18,17 +17,21 @@ const ProductEdit = () => {
     descripcion: '',
     imagenes: null
   });
+  const [previewImage, setPreviewImage] = useState(null);
   const [error, setError] = useState(null);
   const backServerUrl = config.backServerUrl;
 
   useEffect(() => {
     const fetchProductsDetails = async () => {
       try {
+        // console.log("Fetching product details...");
         const response = await fetch(`${backServerUrl}admin/products/${id}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        // console.log("Product data fetched:", data);
+  
         setProduct(data);
         setEditedProduct({
           nombre: data.nombre || '',
@@ -40,14 +43,22 @@ const ProductEdit = () => {
           descripcion: data.descripcion || '',
           imagenes: null
         });
+  
+        if (data.imagenes && data.imagenes.length > 0) {
+          // console.log("Setting preview image:", data.imagenes[0]);
+          setPreviewImage(data.imagenes[0]);
+        } else {
+          // console.log("No image URL found in product data.");
+        }
       } catch (error) {
         setError(error.message);
-        console.error('Error al traer detalles de productos: ', error);
+        // console.error('Error fetching product details: ', error);
       }
     };
-
+  
     fetchProductsDetails();
   }, [id, backServerUrl]);
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -55,6 +66,19 @@ const ProductEdit = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log("Image file selected:", file);
+      setEditedProduct({
+        ...editedProduct,
+        imagenes: file,
+      });
+      setPreviewImage(URL.createObjectURL(file));
+      console.log("Preview image set:", URL.createObjectURL(file));
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -72,26 +96,16 @@ const ProductEdit = () => {
         formData.append("imagenes", editedProduct.imagenes);
       }
   
-      console.log("Datos del formulario antes de enviar:");
-      for (const pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
-      }
-  
       const response = await fetch(`${backServerUrl}admin/products/update/${id}`, {
         method: "PATCH",
         body: formData,
       });
-  
-      console.log("Estado de la respuesta:", response.status);
   
       if (!response.ok) {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
   
-      const responseData = await response.json();
-      console.log("Respuesta del servidor:", responseData);
-      console.log("Poducto editado correctamente");
       navigate('/admin/products');
     } catch (error) {
       console.error("Error actualizando producto:", error);
@@ -99,33 +113,16 @@ const ProductEdit = () => {
     }
   };
 
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setEditedProduct({
-        ...editedProduct,
-        imagenes: file,
-      });
-    }
-  };
-  
-
   const handleDelete = async () => {
     try {
       const response = await fetch(`${backServerUrl}admin/products/delete/${id}`, {
         method: "DELETE",
       });
   
-      console.log("Estado de la respuesta:", response.status);
-  
       if (!response.ok) {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
-  
-      const responseData = await response.json();
-      console.log("Respuesta del servidor:", responseData);
   
       navigate('/admin/products');
     } catch (error) {
@@ -134,7 +131,6 @@ const ProductEdit = () => {
     }
   };
   
-
   if (error) {
     return <p className="text-danger mt-3">Error: {error}</p>;
   }
@@ -145,9 +141,20 @@ const ProductEdit = () => {
 
   return (
     <Container className="my-4">
+      <h2>Editar Producto</h2>
       <Row>
         <Col md={8}>
           <Form onSubmit={handleSubmit}>
+            {/* Visualización de la imagen actual y la previsualización */}
+            {previewImage ? (
+              <div className="mb-3">
+                <Form.Label>Previsualización de Imagen</Form.Label>
+                <Image src={previewImage} alt="Vista previa" thumbnail />
+              </div>
+            ) : (
+              <p>No hay imagen para previsualizar.</p>
+            )}
+            
             <Form.Group controlId="formName">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
@@ -184,7 +191,7 @@ const ProductEdit = () => {
             <Form.Group controlId="formPromotion">
               <Form.Label>Promoción</Form.Label>
               <Form.Control
-                type ="number"
+                type="number"
                 name="promocion"
                 value={editedProduct.promocion}
                 onChange={handleInputChange}
@@ -203,7 +210,7 @@ const ProductEdit = () => {
             <Form.Group controlId="formCategory">
               <Form.Label>Categoría</Form.Label>
               <Form.Control
-                type = "text"
+                type="text"
                 name="categoria"
                 value={editedProduct.categoria}
                 onChange={handleInputChange}
@@ -229,7 +236,7 @@ const ProductEdit = () => {
                 accept="image/*"
               />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
+            <Button variant="primary" type="submit">
               Actualizar Producto
             </Button>
             <Button variant="danger" type="button" onClick={handleDelete} className="ml-2">
