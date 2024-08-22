@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import './PromotionSlider.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import config from '../../utils/config';
 
 const PromotionsSlider = () => {
+  const [images, setImages] = useState([]);
+  const backServerUrl = config.backServerUrl;
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch(`${backServerUrl}admin/images`);
+        const data = await response.json();
+        setImages(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -16,43 +34,21 @@ const PromotionsSlider = () => {
     autoplaySpeed: 2000,
   };
 
+  const slides = images.length === 1 ? [...images, ...images, ...images] : images;
+
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="slide slide1">
-          <div className="slide-content">
-            <h2>Encontrá todo para tus peques</h2>
-            <h1>COLECCIÓN INVIERNO</h1>
-            <h1>2024</h1>
-            <button className="cta-button">VER MÁS</button>
-          </div>
-          <img src="/src/assets/images/promo1.jpg" alt="Promotion 1" className="slide-image"/>
-          <img src="/src/assets/images/inner-image.jpg" alt="Inner Image" className="inner-image"/>
-        </div>
-        <div className="slide slide2">
-          <div className="slide-content">
-            <h2>CONOCE NUESTRAS PROMOCIONES</h2>
-            <h1>SÍGUENOS EN</h1>
-            <h1>REDES SOCIALES</h1>
-            <div className="social-icons">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                <FaInstagram className="social-icon"/>
-              </a>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <FaFacebook className="social-icon"/>
-              </a>
+        {slides.map((image, index) => (
+          <div key={index} className={`slide slide${index + 1}`}>
+            <div className="slide-content">
+              <h2>Slide {index + 1}</h2>
+              <h1>Contenido personalizado</h1>
+              <button className="cta-button">VER MÁS</button>
             </div>
+            <img src={image.url} alt={`Promotion ${index + 1}`} className="slide-image" />
           </div>
-          <img src="/src/assets/images/promo2.jpg" alt="Promotion 2" className="slide-image"/>
-        </div>
-        <div className="slide slide3">
-          <div className="slide-content slide-content-3">
-            <h1>COCOCHO DAYS</h1>
-            <h2>APROVECHA HASTA 6 CUOTAS</h2>
-            <h2>SIN INTERÉS EN PRODUCTOS SELECCIONADOS</h2>
-          </div>
-          <img src="/src/assets/images/promo3.jpg" alt="Promotion 3" className="slide-image"/>
-        </div>
+        ))}
       </Slider>
     </div>
   );

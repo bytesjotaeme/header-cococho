@@ -1,6 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
+// import { CartProvider } from './components/CartContext'; // Actualiza la ruta si es necesario
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer'; // Importa el Footer aquí
@@ -12,14 +13,17 @@ import Ninos from './pages/Ninos/Ninos';
 import Accesorios from './pages/Accesorios/Accesorios';
 import Juguetes from './pages/Juguetes/Juguetes';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import Cart from './components/common/Cart';
-// import './assets/styles/global.css';
+import CartModal from './components/cart/CartModal'; // Importa el CartModal
+import './assets/styles/global.css';
 import ProductosDestacados from './components/common/ProductosDestacados';
 import PublicidadSlider from './components/common/PublicidadSlider';
 import Categorias from './components/common/Categorias';
 import ProductAdmin from './pages/Admin/ProductAdmin';
 import ProductEdit from './components/Admin/ProductEdit';
 import ProductAdd from './components/Admin/ProductAdd';
+import ProductosOferta from './components/common/ProductosOferta';
+import ProductosTemporada from './components/common/ProductosTemporada';
+import EditCarouselImages from './components/common/EditCarouselImages';
 
 function App() {
     return (
@@ -27,18 +31,20 @@ function App() {
             <Router>
                 <div className="App">
                     <Header />
-                    <Cart />
+                    <CartModal /> {/* Agrega el CartModal aquí para que esté disponible en todas las páginas */}
                     <Routes>
                         <Route path="/" element={
                             <>
                                 <PromotionsSlider />
+                                <ProductosOferta/>
+                                <ProductosTemporada/>
                                 <ProductosDestacados />
                                 <Categorias />
                                 <PublicidadSlider />
                                 <Newsletter />
                             </>
                         } />
-                        <Route path="/cart" element={<Cart asPage={true} />} />
+                        <Route path="/cart" element={<CartModal asPage={true} />} /> {/* Ruta específica para mostrar el carrito como página */}
                         <Route path="/bebes" element={<Bebes />} />
                         <Route path="/ninas" element={<Ninas />} />
                         <Route path="/ninos" element={<Ninos />} />
@@ -48,6 +54,7 @@ function App() {
                         <Route path="admin/products" element={<ProductAdmin/>}/>
                         <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
                         <Route path="admin/products/add" element={<ProductAdd/>}/>
+                        <Route path="admin/carrusel" element={<EditCarouselImages/>}/>
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>

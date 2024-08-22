@@ -6,17 +6,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import config from '../../utils/config';
 
-const ProductosDestacados = () => {
-    const [featuredProducts, setFeaturedProducts] = useState([]);
+const ProductosOferta = () => {
+    const [offerProducts, setOfferProducts] = useState([]);
     const navigate = useNavigate();
     const backServerUrl = config.backServerUrl;
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`${backServerUrl}admin/products/carousel/featured`);
+                const response = await fetch(`${backServerUrl}admin/products/carousel/offer`);
                 const data = await response.json();
-                setFeaturedProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
+                setOfferProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -27,9 +27,9 @@ const ProductosDestacados = () => {
 
     const settings = {
         dots: true,
-        infinite: featuredProducts.length > 1, //evita la repetición de elementos
+        infinite: offerProducts.length > 1, //evita la repetición de elementos
         speed: 500,
-        slidesToShow: Math.min(4, featuredProducts.length),
+        slidesToShow: Math.min(4, offerProducts.length),
         slidesToScroll: 1,
         nextArrow: <div className="slick-next" />,
         prevArrow: <div className="slick-prev" />,
@@ -39,7 +39,7 @@ const ProductosDestacados = () => {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    infinite: true,
+                    // infinite: true,
                     dots: true
                 }
             },
@@ -70,9 +70,9 @@ const ProductosDestacados = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Productos Destacados</h1>
+            <h1 className={styles.title}>¡Productos en Oferta!</h1>
             <Slider {...settings}>
-                {featuredProducts.map(product => (
+                {offerProducts.map(product => (
                     <div 
                         key={product._id} 
                         className={styles.productCard}
@@ -92,4 +92,4 @@ const ProductosDestacados = () => {
     );
 };
 
-export default ProductosDestacados;
+export default ProductosOferta;

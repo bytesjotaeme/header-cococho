@@ -6,17 +6,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import config from '../../utils/config';
 
-const ProductosDestacados = () => {
-    const [featuredProducts, setFeaturedProducts] = useState([]);
+const ProductosTemporada = () => {
+    const [seasonalProducts, setSeasonalProducts] = useState([]);
     const navigate = useNavigate();
     const backServerUrl = config.backServerUrl;
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`${backServerUrl}admin/products/carousel/featured`);
+                const response = await fetch(`${backServerUrl}admin/products/carousel/seasonal`);
                 const data = await response.json();
-                setFeaturedProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
+                setSeasonalProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -27,9 +27,9 @@ const ProductosDestacados = () => {
 
     const settings = {
         dots: true,
-        infinite: featuredProducts.length > 1, //evita la repetición de elementos
+        infinite: seasonalProducts.length > 1, //evita la repetición de elementos
         speed: 500,
-        slidesToShow: Math.min(4, featuredProducts.length),
+        slidesToShow: Math.min(4, seasonalProducts.length),
         slidesToScroll: 1,
         nextArrow: <div className="slick-next" />,
         prevArrow: <div className="slick-prev" />,
@@ -72,7 +72,7 @@ const ProductosDestacados = () => {
         <div className={styles.container}>
             <h1 className={styles.title}>Productos Destacados</h1>
             <Slider {...settings}>
-                {featuredProducts.map(product => (
+                {seasonalProducts.map(product => (
                     <div 
                         key={product._id} 
                         className={styles.productCard}
@@ -92,4 +92,4 @@ const ProductosDestacados = () => {
     );
 };
 
-export default ProductosDestacados;
+export default ProductosTemporada;
