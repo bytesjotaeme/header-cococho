@@ -1,50 +1,100 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from '../../utils/config';
 import styles from './Accesorios.module.css';
 
-const Accesorios = () => {
-    const [products, setProducts] = useState([]);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        // Simulación de llamada a una API para obtener productos
-        const fetchedProducts = [
-            { id: 19, name: 'Sombrero', price: 10.00, discountPrice: 8.00, img: '/src/assets/images/image19.jpg' },
-            { id: 20, name: 'Bufanda', price: 12.00, discountPrice: 10.00, img: '/src/assets/images/image20.jpg' },
-            { id: 21, name: 'Gafas de Sol', price: 15.00, discountPrice: 12.00, img: '/src/assets/images/image21.jpg' },
-            { id: 22, name: 'Mochila', price: 20.00, discountPrice: 18.00, img: '/src/assets/images/image22.jpg' },
-            { id: 23, name: 'Cinturón', price: 8.00, discountPrice: 6.00, img: '/src/assets/images/image23.jpg' },
-            { id: 24, name: 'Reloj', price: 30.00, discountPrice: 25.00, img: '/src/assets/images/image24.jpg' },
-        ];
-        setProducts(fetchedProducts);
-    }, []);
-
-    const handleProductClick = (id) => {
-        navigate(`/producto/${id}`);
+const ProductsByCategory = () => {
+  const [productos, setProductos] = useState([]);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); // Estado para manejar la categoría seleccionada
+  const [productosFiltrados, setProductosFiltrados] = useState([]); // Estado para manejar los productos filtrados
+  const [error, setError] = useState(null);
+  const backServerUrl = config.backServerUrl;
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Función para obtener los productos desde la API
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch(`${backServerUrl}admin/products/`,{
+            method: 'GET',
+                    headers:{
+                        "Content-Type": "application/json",
+                    },
+        });
+        if (!response.ok){
+            if(response.status === 401){
+                setError("Acceso no autorizado. Por favor verifica tu token.")
+            }else{
+                setError("Network response was not ok");
+            }
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setProductos(data);
+      } catch (error) {
+        setError(error.message)
+        console.error('Error al obtener los productos:', error);
+      }
     };
 
-    return (
-        <div className={styles.container}>
-            <h1>Accesorios</h1>
-            <select onChange={(e) => navigate(`/${e.target.value}`)} className={styles.dropdown}>
-                <option value="bebes">Bebés</option>
-                <option value="ninas">Niñas</option>
-                <option value="ninos">Niños</option>
-                <option value="accesorios">Accesorios</option>
-                <option value="juguetes">Juguetes</option>
-            </select>
-            <div className={styles.productList}>
-                {products.map(product => (
-                    <div key={product.id} className={styles.productCard} onClick={() => handleProductClick(product.id)}>
-                        <img src={product.img} alt={product.name} />
-                        <h2>{product.name}</h2>
-                        <p>${product.price.toFixed(2)} <span>${product.discountPrice.toFixed(2)}</span></p>
-                        <button onClick={() => handleProductClick(product.id)}>AGREGAR AL CARRO</button>
+    fetchProductos();
+  }, []);
+
+  useEffect(() => {
+    // Función para filtrar los productos cuando cambia la categoría seleccionada
+    const filtrarProductos = () => {
+      if (categoriaSeleccionada === '') {
+        setProductosFiltrados(productos); // Mostrar todos los productos si no hay categoría seleccionada
+      } else {
+        const productosFiltradosPorCategoria = productos.filter(producto =>
+          producto.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
+        );
+        setProductosFiltrados(productosFiltradosPorCategoria);
+      }
+    };
+
+    filtrarProductos();
+  }, [categoriaSeleccionada, productos]); // Volver a filtrar cada vez que cambie la categoría o los productos
+
+  const handleCategoriaChange = (event) => {
+    setCategoriaSeleccionada(event.target.value);
+  };
+  
+  const handleProductClick = (id) => {
+    navigate(`/producto/${id}`);
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1>Accesorios</h1>
+      <select onChange={handleCategoriaChange} className={styles.dropdown} value={categoriaSeleccionada}>
+        <option value="">Todas las Categorías</option>
+        <option value="Bebé">Bebé</option>
+        <option value="Beba">Beba</option>
+        <option value="Mujer">Mujer</option>
+        <option value="Hombre">Hombre</option>
+        <option value="Indumentaria">Indumentaria</option>
+        <option value="rodados">Rodados</option>
+        {/* Agrega más categorías según sea necesario */}
+      </select>
+
+      <div className={styles.productList}>
+        {productosFiltrados.length > 0 ? (
+          productosFiltrados.map(product => (
+            <div key={product._id} className={styles.productCard} /* onClick={() => handleProductClick(product._id)} */>
+                        <img src={product.imagenes} alt={product.nombre} />
+                        <h2>{product.nombre}</h2>
+                        <p>${product.precio.toFixed(2)} <span>${product.promocion.toFixed(2)}</span></p>
+                            <button onClick={() => handleProductClick(product._id)}>Detalle de Producto</button>
                     </div>
-                ))}
-            </div>
-        </div>
-    );
+          ))
+        ) : (
+          <p>No hay productos en esta categoría.</p>
+        )}
+      </div>
+    </div>
+  );
 };
 
-export default Accesorios;
+export default ProductsByCategory;
