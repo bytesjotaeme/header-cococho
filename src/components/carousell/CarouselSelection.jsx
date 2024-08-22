@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import ProductCarousel from './ProductCarousel';
+import config from '../../utils/config';
 
 const CarouselSection = ({ type, title }) => {
   const [products, setProducts] = useState([]);
+  const backServerUrl = config.backServerUrl;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/admin/products/carousel/${type}`);
+        const response = await fetch(`${backServerUrl}/admin/products/carousel/${type}`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {

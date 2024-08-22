@@ -4,15 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import styles from './ProductosDestacados.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import config from '../../utils/config';
 
 const ProductosDestacados = () => {
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const navigate = useNavigate();
+    const backServerUrl = config.backServerUrl;
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/admin/products/carousel/featured');
+                const response = await fetch(`${backServerUrl}admin/products/carousel/featured`);
                 const data = await response.json();
                 setFeaturedProducts(data.slice(0, 10)); // Obtener los primeros 10 productos para el slider
             } catch (error) {

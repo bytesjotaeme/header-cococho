@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
+import config from '../../utils/config';
+
 
 const EditCarouselImages = () => {
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
+  const backServerUrl = config.backServerUrl;
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/admin/images');
+        const response = await axios.get(`${backServerUrl}admin/images`);
         setImages(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching images:', error);
@@ -34,7 +37,7 @@ const EditCarouselImages = () => {
     formData.append('image', selectedImages[index]);
 
     try {
-      await axios.put(`http://localhost:5000/admin/images/${images[index]._id}`, formData, {
+      await axios.put(`${backServerUrl}/admin/images/${images[index]._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -47,7 +50,7 @@ const EditCarouselImages = () => {
 
   const handleDelete = (index) => async () => {
     try {
-      await axios.delete(`http://localhost:5000/admin/images/${images[index]._id}`);
+      await axios.delete(`${backServerUrl}/admin/images/${images[index]._id}`);
       alert('Imagen eliminada con éxito');
       setImages(images.filter((_, i) => i !== index));
     } catch (error) {

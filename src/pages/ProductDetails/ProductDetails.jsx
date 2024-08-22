@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import styles from './ProductDetails.module.css';
+import config from '../../utils/config';
 
 const ProductDetails = () => {
     const { productId } = useParams();
@@ -9,11 +10,12 @@ const ProductDetails = () => {
     const [error, setError] = useState(null);
     const { addToCart } = useCart(); // Usamos el contexto del carrito
     const [quantity, setQuantity] = useState(1);
+    const backServerUrl = config.backServerUrl;
 
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/admin/products/${productId}`);
+                const response = await fetch(`${backServerUrl}admin/products/${productId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
