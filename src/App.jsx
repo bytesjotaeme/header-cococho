@@ -24,9 +24,13 @@ import ProductAdd from './components/Admin/ProductAdd';
 import ProductosOferta from './components/common/ProductosOferta';
 import ProductosTemporada from './components/common/ProductosTemporada';
 import EditCarouselImages from './components/common/EditCarouselImages';
+import ProductsByCategory from './pages/Accesorios/Accesorios';
+import Login from './pages/Admin/Login';
+import { AuthProvider } from './contexts/Context';
 
 function App() {
     return (
+        <AuthProvider>
         <CartProvider>
             <Router>
                 <div className="App">
@@ -48,6 +52,8 @@ function App() {
                         <Route path="/bebes" element={<Bebes />} />
                         <Route path="/ninas" element={<Ninas />} />
                         <Route path="/ninos" element={<Ninos />} />
+                        <Route path="/products/category/:category" element={<ProductsByCategory />} />
+                        <Route path="admin/login" element={<Login/>} />
                         <Route path="/accesorios" element={<Accesorios />} />
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
@@ -60,6 +66,7 @@ function App() {
                 </div>
             </Router>
         </CartProvider>
+        </AuthProvider>
     );
 }
 
