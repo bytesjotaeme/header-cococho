@@ -27,6 +27,7 @@ import EditCarouselImages from './components/common/EditCarouselImages';
 import ProductsByCategory from './pages/Accesorios/Accesorios';
 import Login from './pages/Admin/Login';
 import { AuthProvider } from './contexts/Context';
+import PrivateRoute from './routes/PrivateRoutes';
 
 function App() {
     return (
@@ -57,10 +58,12 @@ function App() {
                         <Route path="/accesorios" element={<Accesorios />} />
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
-                        <Route path="admin/products" element={<ProductAdmin/>}/>
-                        <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
-                        <Route path="admin/products/add" element={<ProductAdd/>}/>
-                        <Route path="admin/carrusel" element={<EditCarouselImages/>}/>
+                        <Route element={<PrivateRoute/>}>
+                            <Route path="admin/products" element={<ProductAdmin/>}/>
+                            <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
+                            <Route path="admin/products/add" element={<ProductAdd/>}/>
+                            <Route path="admin/carrusel" element={<EditCarouselImages/>}/>
+                        </Route>
                     </Routes>
                     <Footer /> {/* Agrega el Footer aquí */}
                 </div>
