@@ -1,16 +1,18 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/images/Daraz-logo.png'; // Ajusta la ruta según la ubicación del logo
 import CartButton from '../cart/CartButton';
+import { AuthContext } from '../../contexts/Context';
+import { Button } from 'react-bootstrap';
 
 const Header = () => {
     const navigate = useNavigate();
-
     const handleCategoryClick = (category) => {
         navigate(`/products/category/${category}`);
     };
 
+    const {isAuthenticated, logout} = useContext(AuthContext);
     return (
         <header className="header">
             <div className="header__logo">
@@ -28,7 +30,22 @@ const Header = () => {
             </nav>
             <div className="header__actions">
                 <input type="text" placeholder="Search" className="header__search" />
-                <Link to="/login" className="header__login">Iniciar sesión</Link>
+                {isAuthenticated ? (
+                    <Link to="/">
+                        <Button variant="outline-primary" className="btn-login" onClick={logout}>
+                            Cerrar Sesión
+                        </Button>
+                    </Link>
+                    ) : (
+                       <Link to="/admin/login">
+                            <Button variant="outline-primary" className="btn-login">
+                                Iniciar Sesión
+                            </Button>
+                        </Link>
+                 )}
+
+                    
+                {/* <Link to="/admin/login" className="header__login">Iniciar sesión</Link> */}
                 <CartButton/>
             </div>
         </header>
