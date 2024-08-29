@@ -1,0 +1,36 @@
+/* ScrollToTopButton.css */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 3px 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; /* Oculta el botón por defecto */
+    font-size: 18px;
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+    transition: opacity 0.3s ease;
+    text-align: center; /* Centra el texto */
+    overflow: hidden; /* Asegura que el texto no se desborde */
+}
+
+.scroll-to-top.show {
+    display: block; /* Muestra el botón cuando se activa */
+    opacity: 1; /* Asegura que el botón sea completamente visible */
+}
+
+.scroll-to-top::after {
+    content: 'Subir'; /* Texto que se muestra cuando se pasa el mouse sobre el botón */
+    display: block;
+    font-size: 12px; /* Tamaño del texto */
+    margin-top: 5px; /* Espaciado superior del texto */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.3s ease; /* Transición suave */
+}
+
+.scroll-to-top:hover::after {
+    opacity: 1; /* Muestra el texto al pasar el mouse */
+}
