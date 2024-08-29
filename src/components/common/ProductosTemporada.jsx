@@ -65,12 +65,12 @@ const ProductosTemporada = () => {
     };
 
     const handleViewMoreProducts = () => {
-        navigate('/bebes');
+        navigate('/productos');
     };
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Productos Destacados</h1>
+            <h1 className={styles.title}>Productos de Temporada</h1>
             <Slider {...settings}>
                 {seasonalProducts.map(product => (
                     <div 
