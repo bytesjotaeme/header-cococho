@@ -2,20 +2,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import config from "../../utils/config";
 import { useEffect, useState } from "react";
+import "../../css/Admin/ProductEdit.css";
 
 const ProductEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [editedProduct, setEditedProduct] = useState({
-    nombre: '',
-    stock: '',
-    precio: '',
-    promocion: '',
-    talle: '',
-    categoria: '',
-    descripcion: '',
-    imagenes: null
+    nombre: "",
+    stock: "",
+    precio: "",
+    promocion: "",
+    talle: "",
+    categoria: "",
+    descripcion: "",
+    imagenes: null,
   });
   const [previewImage, setPreviewImage] = useState(null);
   const [error, setError] = useState(null);
@@ -27,23 +28,23 @@ const ProductEdit = () => {
         // console.log("Fetching product details...");
         const response = await fetch(`${backServerUrl}admin/products/${id}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         // console.log("Product data fetched:", data);
-  
+
         setProduct(data);
         setEditedProduct({
-          nombre: data.nombre || '',
-          stock: data.stock || '',
-          precio: data.precio || '',
-          promocion: data.promocion || '',
-          talle: data.talle || '',
-          categoria: data.categoria || '',
-          descripcion: data.descripcion || '',
-          imagenes: null
+          nombre: data.nombre || "",
+          stock: data.stock || "",
+          precio: data.precio || "",
+          promocion: data.promocion || "",
+          talle: data.talle || "",
+          categoria: data.categoria || "",
+          descripcion: data.descripcion || "",
+          imagenes: null,
         });
-  
+
         if (data.imagenes && data.imagenes.length > 0) {
           // console.log("Setting preview image:", data.imagenes[0]);
           setPreviewImage(data.imagenes[0]);
@@ -55,10 +56,9 @@ const ProductEdit = () => {
         // console.error('Error fetching product details: ', error);
       }
     };
-  
+
     fetchProductsDetails();
   }, [id, backServerUrl]);
-  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -95,18 +95,21 @@ const ProductEdit = () => {
       if (editedProduct.imagenes) {
         formData.append("imagenes", editedProduct.imagenes);
       }
-  
-      const response = await fetch(`${backServerUrl}admin/products/update/${id}`, {
-        method: "PATCH",
-        body: formData,
-      });
-  
+
+      const response = await fetch(
+        `${backServerUrl}admin/products/update/${id}`,
+        {
+          method: "PATCH",
+          body: formData,
+        }
+      );
+
       if (!response.ok) {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
-  
-      navigate('/admin/products');
+
+      navigate("/admin/products");
     } catch (error) {
       console.error("Error actualizando producto:", error);
       setError(error.message);
@@ -115,22 +118,25 @@ const ProductEdit = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${backServerUrl}admin/products/delete/${id}`, {
-        method: "DELETE",
-      });
-  
+      const response = await fetch(
+        `${backServerUrl}admin/products/delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
       if (!response.ok) {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
-  
-      navigate('/admin/products');
+
+      navigate("/admin/products");
     } catch (error) {
       console.error("Error al eliminar producto:", error);
       setError(error.message);
     }
   };
-  
+
   if (error) {
     return <p className="text-danger mt-3">Error: {error}</p>;
   }
@@ -141,21 +147,22 @@ const ProductEdit = () => {
 
   return (
     <Container className="my-4">
-      <h2>Editar Producto</h2>
+      <h2 className="title-edit">Editar Producto</h2>
+      <hr id="hr-edit" />
       <Row>
         <Col md={8}>
           <Form onSubmit={handleSubmit}>
             {/* Visualización de la imagen actual y la previsualización */}
             {previewImage ? (
-              <div className="mb-3">
+              <div className="container-img-edit">
                 <Form.Label>Previsualización de Imagen</Form.Label>
-                <Image src={previewImage} alt="Vista previa" thumbnail />
+                <Image width="300px"id="img-edit" src={previewImage} alt="Vista previa" thumbnail />
               </div>
             ) : (
               <p>No hay imagen para previsualizar.</p>
             )}
-            
-            <Form.Group controlId="formName">
+
+            <Form.Group className="form-group-add" controlId="formName">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
@@ -166,7 +173,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formStock">
+            <Form.Group className="form-group-add" controlId="formStock">
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 type="number"
@@ -177,7 +184,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formPrice">
+            <Form.Group className="form-group-add" controlId="formPrice">
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 type="number"
@@ -188,7 +195,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formPromotion">
+            <Form.Group className="form-group-add" controlId="formPromotion">
               <Form.Label>Promoción</Form.Label>
               <Form.Control
                 type="number"
@@ -197,7 +204,7 @@ const ProductEdit = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group controlId="formTalle">
+            <Form.Group className="form-group-add" controlId="formTalle">
               <Form.Label>Talle</Form.Label>
               <Form.Control
                 type="text"
@@ -207,7 +214,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formCategory">
+            <Form.Group className="form-group-add" controlId="formCategory">
               <Form.Label>Categoría</Form.Label>
               <Form.Control
                 type="text"
@@ -217,7 +224,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formDescription">
+            <Form.Group className="form-group-add" controlId="formDescription">
               <Form.Label>Descripción</Form.Label>
               <Form.Control
                 as="textarea"
@@ -227,7 +234,7 @@ const ProductEdit = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formImage">
+            <Form.Group className="form-group-add" controlId="formImage">
               <Form.Label>Imagen</Form.Label>
               <Form.Control
                 type="file"
@@ -236,12 +243,19 @@ const ProductEdit = () => {
                 accept="image/*"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Actualizar Producto
-            </Button>
-            <Button variant="danger" type="button" onClick={handleDelete} className="ml-2">
-              Eliminar Producto
-            </Button>
+            <div className="buttons-edit">
+              <Button variant="primary" type="submit">
+                Actualizar Producto
+              </Button>
+              <Button
+                variant="danger"
+                type="button"
+                onClick={handleDelete}
+                className="ml-2"
+              >
+                Eliminar Producto
+              </Button>
+            </div>
           </Form>
           {error && <p className="text-danger mt-3">Error: {error}</p>}
         </Col>
