@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import config from "../../utils/config";
+import "../../css/Admin/ProductAdd.css"
 
 const ProductAdd = () => {
   const [error, setError] = useState(null);
@@ -84,10 +85,12 @@ const ProductAdd = () => {
 
   return (
     <Container className="my-4">
+      <h2 className="title-add">Agregar producto</h2>
+      <hr id="hr-add"/>
       <Row>
-        <Col md={8}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formName">
+        <Col className="container-form-add" md={8}>
+          <Form className="form-add" onSubmit={handleSubmit}>
+            <Form.Group className="form-group-add" controlId="formName">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
@@ -98,7 +101,7 @@ const ProductAdd = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formStock">
+            <Form.Group className="form-group-add" controlId="formStock">
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 type="number"
@@ -109,7 +112,7 @@ const ProductAdd = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formPrice">
+            <Form.Group className="form-group-add" controlId="formPrice">
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 type="number"
@@ -120,26 +123,27 @@ const ProductAdd = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formPromotion">
+            <Form.Group className="form-group-add" controlId="formPromotion">
               <Form.Label>Promoción</Form.Label>
               <Form.Control
                 type="number"
                 name="promocion"
                 value={newProduct.promocion}
                 onChange={handleInputChange}
+                placeholder="Ingrese el precio promocional"
               />
             </Form.Group>
-            <Form.Group controlId="formTalle">
+            <Form.Group className="form-group-add" controlId="formTalle">
               <Form.Label>Talle</Form.Label>
               <Form.Control
                 type="text"
                 name="talle"
                 value={newProduct.talle}
                 onChange={handleInputChange}
-                required
+                placeholder="Ingrese el talle del producto"
               />
             </Form.Group>
-            <Form.Group controlId="formCategory">
+            <Form.Group className="form-group-add" controlId="formCategory">
               <Form.Label>Categoría</Form.Label>
               <Form.Control
                 type="text"
@@ -149,17 +153,19 @@ const ProductAdd = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formDescription">
+            <Form.Group className="form-group-add" controlId="formDescription">
               <Form.Label>Descripción</Form.Label>
               <Form.Control
                 as="textarea"
                 name="descripcion"
                 value={newProduct.descripcion}
                 onChange={handleInputChange}
+                placeholder="Agrega una descripción al producto"
+
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formImage">
+            <Form.Group className="form-group-add" controlId="formImage">
               <Form.Label>Imágenes</Form.Label>
               <Form.Control
                 type="file"
@@ -169,7 +175,7 @@ const ProductAdd = () => {
                 multiple
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="button-add" variant="primary" type="submit">
               Agregar Producto
             </Button>
           </Form>
