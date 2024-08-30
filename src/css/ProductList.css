@@ -7,6 +7,8 @@
     text-align: center;
     margin-bottom: 1.5rem;
     color: #2F6FA5;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
   }
   
   .table-productlist {
@@ -43,9 +45,8 @@
   }
   
   .container-productlist {
-    margin-left: 5%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    width: auto;
+    margin: 50px 5%;
     background-color: #E3DCD6;
     padding: 20px;
     border-radius: 8px;
@@ -56,6 +57,7 @@
   }
   
   @media (max-width: 767px) {
+
     .table-productlist img {
       width: 75px;
       height: 75px;
