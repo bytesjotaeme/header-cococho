@@ -1,0 +1,38 @@
+.container-edit-carrusel{
+    margin-left: 6%;
+}
+.title-edit-carrusel{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin: 30px 0 10px 0;
+}
+#hr-carrusel{
+    border: 5px solid #32CD32;
+    margin-left: 0;
+    margin-bottom: 20px;
+    width: 30%;
+    min-width: 250px;
+}
+
+.edit-carousel-image{
+    min-width: 300px;
+    max-width: 700px;
+    margin: 30px 0;
+    margin-right: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    background-color: #E3DCD6;
+}
+.current-image{
+    width: 200px;
+    height: 120px;
+}
+.form-carrusel-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 170px;
+}
+.form-carrusel-image button{
+    width: 180px;
+}
