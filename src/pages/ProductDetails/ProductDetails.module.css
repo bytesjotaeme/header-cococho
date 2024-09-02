@@ -1,0 +1,108 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.imageContainer {
+    flex: 1;
+    max-width: 50%;
+}
+
+.imageContainer img {
+    width: 30vw;
+    height: auto;
+}
+
+.detailsContainer {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.detailsContainer h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.detailsContainer p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.detailsContainer p span {
+    color: #f00;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.purchaseInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.purchaseInfo label {
+    margin-bottom: 10px;
+}
+
+.purchaseInfo input {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
+    width: calc(100% - 20px); /* Ajustar el ancho para evitar desbordamiento */
+}
+
+.purchaseInfo button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    width: auto; /* Ajustar el ancho del botón */
+}
+
+.addToCartButton {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.addToCartButton:hover,
+.purchaseInfo button:hover {
+    background-color: #333;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imageContainer, .detailsContainer {
+        max-width: 100%;
+    }
+
+    .purchaseInfo {
+        width: 100%;
+    }
+
+    .purchaseInfo input {
+        width: 100%;
+    }
+
+    .addToCartButton {
+        width: 100%;
+        text-align: center;
+    }
+}
