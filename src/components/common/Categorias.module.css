@@ -2,12 +2,14 @@
     background-color: #28a745; /* Fondo verde */
     padding: 20px;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .title {
     color: #fff;
     font-size: 50px;
     margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .categories {
@@ -15,17 +17,20 @@
     justify-content: center;
     gap: 10px; /* Reducir el espacio entre las imágenes */
     margin-bottom: 10px; /* Reducir margen entre filas */
+    font-family: 'Poppins', sans-serif;
 }
 
 .category {
     cursor: pointer;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .imageContainer {
     position: relative;
     width: 300px;
     height: 400px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .image {
@@ -33,6 +38,7 @@
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
+    font-family: 'Poppins', sans-serif;
 }
 
 .categoryName {
@@ -45,4 +51,5 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejor legibilidad */
     padding: 5px 10px;
     border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
 }

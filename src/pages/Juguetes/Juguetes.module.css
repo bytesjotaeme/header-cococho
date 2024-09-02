@@ -1,5 +1,22 @@
 .container {
     padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.intro {
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
 }
 
 .dropdown {
@@ -8,55 +25,54 @@
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
 }
 
 .productList {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-/* Estilos responsivos */
-@media (max-width: 1200px) {
-    .productList {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .productList {
-        grid-template-columns: 1fr;
-    }
+    grid-template-columns: repeat(4, 1fr); /* Cuatro productos por fila */
+    gap: 20px;
 }
 
 .productCard {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.2s;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .productCard:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .productCard img {
     width: 100%;
-    height: 200px; /* Altura fija para todas las imágenes */
-    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor sin recortarse */
+    height: 250px; /* Altura fija para todas las imágenes */
+    object-fit: contain; /* Mantiene la proporción de la imagen, ajustándola dentro del contenedor sin recortarla */
     margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra para darle profundidad */
+    background-color: #f9f9f9; /* Añade un fondo claro para que las imágenes más pequeñas no se vean flotando */
+    padding: 10px; /* Añade un pequeño padding para evitar que las imágenes toquen los bordes del contenedor */
 }
 
+
+
 .productCard h2 {
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px 0;
+    padding: 0 10px;
 }
 
 .productCard p {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     margin: 10px 0;
+    padding: 0 10px;
 }
 
 .productCard p span {
@@ -66,15 +82,37 @@
 }
 
 .productCard button {
+    display: block;
+    width: 100%;
+    padding: 10px;
     background-color: #000;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    border-radius: 0 0 8px 8px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
+    text-align: center;
+    font-size: 14px;
 }
 
 .productCard button:hover {
     background-color: #333;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+    .productList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .productList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .productList {
+        grid-template-columns: 1fr;
+    }
 }

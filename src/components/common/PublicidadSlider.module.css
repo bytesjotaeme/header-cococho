@@ -4,6 +4,7 @@
     margin: auto;
     overflow: hidden;
     position: relative;
+    font-family: 'Poppins', sans-serif;
 }
 
 .slider .slideTrack {
@@ -15,6 +16,7 @@
 .slider .slide {
     width: 200px;
     flex-shrink: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .slider .slide img {

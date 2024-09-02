@@ -4,6 +4,7 @@ import styles from './Ninos.module.css';
 
 const Ninos = () => {
     const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('ninos');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,27 +20,37 @@ const Ninos = () => {
         setProducts(fetchedProducts);
     }, []);
 
-    const handleProductClick = (id) => {
-        navigate(`/producto/${id}`);
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+        navigate(`/${category}`);
     };
 
     return (
         <div className={styles.container}>
-            <h1>Productos de Niños</h1>
-            <select onChange={(e) => navigate(`/${e.target.value}`)} className={styles.dropdown}>
+            {/* Sección Descriptiva */}
+            <div className={styles.intro}>
+                <h1>Productos de Niños</h1>
+                <p>Descubrí toda la variedad de ropa para niños: desde camisetas y pantalones hasta abrigos y accesorios, ideales para cualquier estación. Aprovechá nuestras ofertas con hasta 50% de descuento.</p>
+            </div>
+
+            {/* Dropdown para cambiar de categoría */}
+            <select value={selectedCategory} onChange={handleCategoryChange} className={styles.dropdown}>
                 <option value="bebes">Bebés</option>
                 <option value="ninas">Niñas</option>
                 <option value="ninos">Niños</option>
                 <option value="accesorios">Accesorios</option>
                 <option value="juguetes">Juguetes</option>
             </select>
+
+            {/* Lista de Productos */}
             <div className={styles.productList}>
                 {products.map(product => (
                     <div key={product.id} className={styles.productCard} onClick={() => handleProductClick(product.id)}>
                         <img src={product.img} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p>${product.price.toFixed(2)} <span>${product.discountPrice.toFixed(2)}</span></p>
-                        <button>AGREGAR AL CARRO</button>
+                        <button>Detalle de Producto</button>
                     </div>
                 ))}
             </div>

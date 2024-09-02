@@ -25,7 +25,13 @@ const Bebes = () => {
 
     return (
         <div className={styles.container}>
-            <h1>Productos de Bebés</h1>
+            {/* Sección Descriptiva */}
+            <div className={styles.intro}>
+                <h1>Bebés</h1>
+                <p>Dale lo mejor en indumentaria para sus primeros meses de vida en este SALE. Aprovechá de un 50% de descuento en todos nuestros diseños para tu bebé en hasta 3 cuotas sin interés. Encontrá camperas, enteritos, buzos, ranitas, batitas, bodies ¡y más!</p>
+            </div>
+
+            {/* Dropdown para cambiar de categoría */}
             <select onChange={(e) => navigate(`/${e.target.value}`)} className={styles.dropdown}>
                 <option value="bebes">Bebés</option>
                 <option value="ninas">Niñas</option>
@@ -33,13 +39,15 @@ const Bebes = () => {
                 <option value="accesorios">Accesorios</option>
                 <option value="juguetes">Juguetes</option>
             </select>
+
+            {/* Lista de Productos */}
             <div className={styles.productList}>
                 {products.map(product => (
                     <div key={product.id} className={styles.productCard} onClick={() => handleProductClick(product.id)}>
                         <img src={product.img} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p>${product.price.toFixed(2)} <span>${product.discountPrice.toFixed(2)}</span></p>
-                        <button>AGREGAR AL CARRO</button>
+                        <button>Detalle de Producto</button>
                     </div>
                 ))}
             </div>
@@ -48,4 +56,3 @@ const Bebes = () => {
 };
 
 export default Bebes;
-

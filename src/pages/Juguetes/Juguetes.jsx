@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Juguetes.module.css';
 
 const Juguetes = () => {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
         // Simulación de llamada a una API para obtener productos
@@ -19,14 +21,23 @@ const Juguetes = () => {
         setProducts(fetchedProducts);
     }, []);
 
-    const handleProductClick = (id) => {
-        navigate(`/producto/${id}`);
+    useEffect(() => {
+        // Establecer la categoría seleccionada según la ruta actual
+        const path = location.pathname.substring(1); // Quita la barra inicial "/"
+        setSelectedCategory(path);
+    }, [location.pathname]);
+
+    const handleCategoryChange = (e) => {
+        navigate(`/${e.target.value}`);
     };
 
     return (
         <div className={styles.container}>
-            <h1>Juguetes</h1>
-            <select onChange={(e) => navigate(`/${e.target.value}`)} className={styles.dropdown}>
+            <div className={styles.intro}>
+                <h1>Juguetes</h1>
+                <p>Descubrí nuestra amplia gama de juguetes para todas las edades, desde pelotas hasta rompecabezas, para que tus hijos se diviertan al máximo.</p>
+            </div>
+            <select onChange={handleCategoryChange} className={styles.dropdown} value={selectedCategory}>
                 <option value="bebes">Bebés</option>
                 <option value="ninas">Niñas</option>
                 <option value="ninos">Niños</option>
@@ -39,7 +50,7 @@ const Juguetes = () => {
                         <img src={product.img} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p>${product.price.toFixed(2)} <span>${product.discountPrice.toFixed(2)}</span></p>
-                        <button onClick={() => handleProductClick(product.id)}>AGREGAR AL CARRO</button>
+                        <button>Detalle de Producto</button>
                     </div>
                 ))}
             </div>

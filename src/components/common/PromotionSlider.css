@@ -30,33 +30,34 @@
   padding: 0;
   border-radius: 0;
   max-width: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide1 .slide-content h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide1 .slide-content h1 {
   font-size: 4rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide1 .slide-content h1 + h1 {
   font-size: 4rem;
   margin-top: 0;
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide1 .slide-content p {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide1 .inner-image {
@@ -77,6 +78,7 @@
   cursor: pointer;
   border-radius: 25px;
   transition: background-color 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .cta-button:hover {
@@ -94,19 +96,19 @@
   text-align: left;
   padding: 20px;
   border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide2 .slide-content h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide2 .slide-content h1 {
   font-size: 4.5rem;
   margin-bottom: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide2 .social-icons {
@@ -148,17 +150,19 @@
   border-radius: 10px;
   color: white;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide3 .slide-content-3 h1 {
   font-size: 4rem;
   margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .slide3 .slide-content-3 h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Media Queries para responsividad */
@@ -170,15 +174,18 @@
   .slide1 .slide-content h2,
   .slide2 .slide-content h2 {
     font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .slide-content h1,
   .slide2 .slide-content h1 {
     font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .slide-content h1 + h1 {
     font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .inner-image {
@@ -188,6 +195,7 @@
   .cta-button {
     font-size: 1rem;
     padding: 0.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide2 .social-icon {
@@ -197,10 +205,12 @@
   
   .slide3 .slide-content-3 h1 {
     font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide3 .slide-content-3 h2 {
     font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
@@ -212,15 +222,18 @@
   .slide1 .slide-content h2,
   .slide2 .slide-content h2 {
     font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .slide-content h1,
   .slide2 .slide-content h1 {
     font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .slide-content h1 + h1 {
     font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide1 .inner-image {
@@ -230,6 +243,7 @@
   .cta-button {
     font-size: 0.75rem;
     padding: 0.5rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide2 .social-icon {
@@ -239,9 +253,11 @@
   
   .slide3 .slide-content-3 h1 {
     font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
   }
   
   .slide3 .slide-content-3 h2 {
     font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
   }
 }

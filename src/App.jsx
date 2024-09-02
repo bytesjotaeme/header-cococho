@@ -16,7 +16,8 @@ import Accesorios from './pages/Accesorios/Accesorios';
 import Juguetes from './pages/Juguetes/Juguetes';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import CartModal from './components/cart/CartModal'; // Importa el CartModal
-//import './assets/styles/global.css';
+import './assets/global.css';
+
 import ProductosDestacados from './components/common/ProductosDestacados';
 import PublicidadSlider from './components/common/PublicidadSlider';
 import Categorias from './components/common/Categorias';

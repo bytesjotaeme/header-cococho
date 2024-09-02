@@ -2,6 +2,7 @@
     padding: 20px;
     background-color: #fff;
     margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .title {
@@ -23,6 +24,7 @@
     height: 400px; /* Ajustar la altura para que los botones no se superpongan */
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra para darle profundidad */
+    font-family: 'Poppins', sans-serif;
 }
 
 .productCard:hover {
@@ -40,18 +42,21 @@
 .productName {
     font-size: 18px;
     margin: 10px 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .productPrice {
     font-size: 16px;
     color: #333;
     margin: 10px 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .productPrice span {
     color: #f00;
     text-decoration: line-through;
     margin-left: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .addButton, .viewProductButton {
@@ -62,6 +67,7 @@
     font-size: 16px;
     margin-top: 10px;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .addButton {
@@ -92,6 +98,7 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .slick-prev:before, .slick-next:before {
@@ -110,6 +117,7 @@
 .viewMoreContainer {
     text-align: center;
     margin-top: 40px; /* Ajustar el margen superior para separarlo de las tarjetas de productos */
+    font-family: 'Poppins', sans-serif;
 }
 
 .viewMoreButton {
@@ -122,6 +130,7 @@
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     margin-top: 20px; /* Añadir margen superior para separarlo de las tarjetas de productos */
+    font-family: 'Poppins', sans-serif;
 }
 
 .viewMoreButton:hover {
