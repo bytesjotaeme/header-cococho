@@ -59,7 +59,7 @@ const Login = () => {
       <div className="form-container">
         <div className="header-login">
           <img
-            src="https://scontent.ftuc1-1.fna.fbcdn.net/v/t39.30808-6/305621852_498638902267183_5814977750781489955_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VuCBrdiZS9cQ7kNvgHNy0Vc&_nc_ht=scontent.ftuc1-1.fna&oh=00_AYCYIwSFh6TL07LcJob3KpxItEFEj5ioeThk3wbq_psHUA&oe=66D29BD7"
+            src="https://res.cloudinary.com/dtbv2vppz/image/upload/v1725929625/cocohoLogo_wwks8u.jpg"
             alt="Cococho Logo"
             className="logo"
             width="100"
