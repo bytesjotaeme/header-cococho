@@ -28,6 +28,8 @@ import ProductsByCategory from './pages/Accesorios/Accesorios';
 import Login from './pages/Admin/Login';
 import { AuthProvider } from './contexts/Context';
 import PrivateRoute from './routes/PrivateRoutes';
+import Error404 from './pages/Error404';
+import ScrollToTopButton from './components/common/ScrollToTopButton';
 
 function App() {
     return (
@@ -36,7 +38,7 @@ function App() {
             <Router>
                 <div className="App">
                     <Header />
-                    <CartModal /> {/* Agrega el CartModal aquí para que esté disponible en todas las páginas */}
+                    <CartModal /> 
                     <Routes>
                         <Route path="/" element={
                             <>
@@ -47,10 +49,11 @@ function App() {
                                 <Categorias />
                                 <PublicidadSlider />
                                 <Newsletter />
+                                <ScrollToTopButton/>
                             </>
                         } />
                         <Route path="/cart" element={<CartModal asPage={true} />} /> {/* Ruta específica para mostrar el carrito como página */}
-                        <Route path="/bebes" element={<Bebes />} />
+                        <Route path="/productos" element={<Bebes />} />
                         <Route path="/ninas" element={<Ninas />} />
                         <Route path="/ninos" element={<Ninos />} />
                         <Route path="/products/category/:category" element={<ProductsByCategory />} />
@@ -58,6 +61,7 @@ function App() {
                         <Route path="/accesorios" element={<Accesorios />} />
                         <Route path="/juguetes" element={<Juguetes />} />
                         <Route path="/producto/:productId" element={<ProductDetails />} />
+                        <Route path="*" element={<Error404/>} />
                         <Route element={<PrivateRoute/>}>
                             <Route path="admin/products" element={<ProductAdmin/>}/>
                             <Route path="admin/products/update/:id" element={<ProductEdit/>}/>
