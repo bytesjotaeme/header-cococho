@@ -2,10 +2,11 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    text-align: center;
     align-items: center;
     background-color: #f4f4f4;
-    padding: 10px 20px;
+    padding: 10px 0;
 }
 
 .header__logo img {
@@ -20,7 +21,7 @@
 }
 
 .header__nav a:hover {
-    color: #32CD32; /* Color verde */
+    color: #afd918; /* Color verde */
 }
 
 .header__nav button{
@@ -29,7 +30,7 @@
     margin-right: 5px;
 }
 .header__nav button:hover{
-    color:#32CD32
+    color:#afd918;
 }
 
 .header__actions {
@@ -42,15 +43,28 @@
     margin-right: 20px;
 }
 
-.header__login {
-    color: #32CD32; /* Color verde */
+/* .header__login {
+    color: #32CD32;
     margin-right: 20px;
     text-decoration: none;
     font-weight: bold;
-}
+} */
 
-.header__login:hover {
-    color: #228B22; /* Verde más oscuro */
+/* .header__login:hover {
+    color: #228B22; 
+}
+ */
+.btn-login{
+    font-family: 'Poppins', sans-serif;
+    background-color:#afd918;
+    border: 2px solid #afd918;
+    color: #000;
+    font-weight: bold;
+}
+.btn-login:hover{
+    color: #000;
+    background-color:#afd918;
+    border: 2px solid #000;
 }
 
 .header__cart {
