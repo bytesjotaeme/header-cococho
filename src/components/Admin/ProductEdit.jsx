@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import config from "../../utils/config";
 import { useEffect, useState } from "react";
 import "../../css/Admin/ProductEdit.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductEdit = () => {
   const { id } = useParams();
@@ -108,10 +110,13 @@ const ProductEdit = () => {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
-
-      navigate("/admin/products");
+      toast.success('¡Producto Actualizado!');
+      setTimeout(() => {
+        navigate("/admin/products");
+      }, 1500); 
     } catch (error) {
       console.error("Error actualizando producto:", error);
+      toast.error('Error al Actualizar el producto');
       setError(error.message);
     }
   };
@@ -129,8 +134,10 @@ const ProductEdit = () => {
         const errorResponse = await response.text();
         throw new Error(`Network response was not ok: ${errorResponse}`);
       }
-
-      navigate("/admin/products");
+      toast.success('¡Producto eliminado con éxito!');  
+      setTimeout(() => {
+        navigate("/admin/products");
+      }, 2000);
     } catch (error) {
       console.error("Error al eliminar producto:", error);
       setError(error.message);
@@ -260,6 +267,7 @@ const ProductEdit = () => {
           {error && <p className="text-danger mt-3">Error: {error}</p>}
         </Col>
       </Row>
+      <ToastContainer/>
     </Container>
   );
 };
