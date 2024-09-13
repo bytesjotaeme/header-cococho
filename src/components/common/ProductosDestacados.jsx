@@ -65,7 +65,7 @@ const ProductosDestacados = () => {
     };
 
     const handleViewMoreProducts = () => {
-        navigate('/bebes');
+        navigate('/productos');
     };
 
     return (

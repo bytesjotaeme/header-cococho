@@ -67,7 +67,7 @@ const ProductList = () => {
                 <Link to="/admin/products/add">
                     <Button variant="success">Agregar Producto</Button>
                 </Link>
-                <h1 className="h1-productlist">Listado Productos</h1>
+                <h1 className="h1-productlist">Listado de Productos</h1>
                 <div className="product-card-header">
                     <Form.Control
                         type="text"

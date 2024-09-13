@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import config from '../../utils/config';
+import '../../css/Admin/EditCarrusel.css';
 
 
 const EditCarouselImages = () => {
@@ -20,7 +21,7 @@ const EditCarouselImages = () => {
     };
 
     fetchImages();
-  }, []);
+  }, [backServerUrl]);
 
   const handleImageChange = (index) => (event) => {
     const file = event.target.files[0];
@@ -37,7 +38,7 @@ const EditCarouselImages = () => {
     formData.append('image', selectedImages[index]);
 
     try {
-      await axios.put(`${backServerUrl}/admin/images/${images[index]._id}`, formData, {
+      await axios.put(`${backServerUrl}admin/images/${images[index]._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -50,7 +51,7 @@ const EditCarouselImages = () => {
 
   const handleDelete = (index) => async () => {
     try {
-      await axios.delete(`${backServerUrl}/admin/images/${images[index]._id}`);
+      await axios.delete(`${backServerUrl}admin/images/${images[index]._id}`);
       alert('Imagen eliminada con éxito');
       setImages(images.filter((_, i) => i !== index));
     } catch (error) {
@@ -59,12 +60,14 @@ const EditCarouselImages = () => {
   };
 
   return (
-    <div>
-        <h2>Editar Carrusel</h2>
+    <div className='container-edit-carrusel'>
+        <h2 className='title-edit-carrusel'>Editar Carrusel</h2>
+        <hr id="hr-carrusel"/>
       {images.map((image, index) => (
         <div key={index} className="edit-carousel-image">
+          <h4>Imágen actual {index+1}</h4>
           <img src={image.url} alt={`Imagen ${index + 1}`} className="current-image" />
-          <Form onSubmit={handleSubmit(index)}>
+          <Form className='form-carrusel-image' onSubmit={handleSubmit(index)}>
             <Form.Group controlId={`formImage${index}`}>
               <Form.Label>Seleccionar nueva imagen</Form.Label>
               <Form.Control

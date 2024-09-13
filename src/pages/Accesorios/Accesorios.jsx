@@ -1,26 +1,24 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import config from '../../utils/config';
 import styles from './Accesorios.module.css';
 
-
 const ProductsByCategory = () => {
   const [productos, setProductos] = useState([]);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); // Estado para manejar la categoría seleccionada
-  const [productosFiltrados, setProductosFiltrados] = useState([]); // Estado para manejar los productos filtrados
+  const [productosFiltrados, setProductosFiltrados] = useState([]);
   const [error, setError] = useState(null);
+  const { category } = useParams(); // Obtener la categoría desde la URL
   const backServerUrl = config.backServerUrl;
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Función para obtener los productos desde la API
     const fetchProductos = async () => {
       try {
         const response = await fetch(`${backServerUrl}admin/products/`,{
             method: 'GET',
-                    headers:{
-                        "Content-Type": "application/json",
-                    },
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
         if (!response.ok){
             if(response.status === 401){
@@ -42,52 +40,36 @@ const ProductsByCategory = () => {
   }, []);
 
   useEffect(() => {
-    // Función para filtrar los productos cuando cambia la categoría seleccionada
     const filtrarProductos = () => {
-      if (categoriaSeleccionada === '') {
-        setProductosFiltrados(productos); // Mostrar todos los productos si no hay categoría seleccionada
-      } else {
+      if (category) {
         const productosFiltradosPorCategoria = productos.filter(producto =>
-          producto.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
+          producto.categoria.toLowerCase() === category.toLowerCase()
         );
         setProductosFiltrados(productosFiltradosPorCategoria);
+      } else {
+        setProductosFiltrados(productos);
       }
     };
 
     filtrarProductos();
-  }, [categoriaSeleccionada, productos]); // Volver a filtrar cada vez que cambie la categoría o los productos
+  }, [category, productos]); // Volver a filtrar cada vez que cambie la categoría o los productos
 
-  const handleCategoriaChange = (event) => {
-    setCategoriaSeleccionada(event.target.value);
-  };
-  
   const handleProductClick = (id) => {
     navigate(`/producto/${id}`);
   };
 
   return (
     <div className={styles.container}>
-      <h1>Accesorios</h1>
-      <select onChange={handleCategoriaChange} className={styles.dropdown} value={categoriaSeleccionada}>
-        <option value="">Todas las Categorías</option>
-        <option value="Bebé">Bebé</option>
-        <option value="Beba">Beba</option>
-        <option value="Mujer">Mujer</option>
-        <option value="Hombre">Hombre</option>
-        <option value="Indumentaria">Indumentaria</option>
-        <option value="rodados">Rodados</option>
-        {/* Agrega más categorías según sea necesario */}
-      </select>
-
+      <h1>{category ? `Categoría: ${category}` : 'Todos los Productos'}</h1>
       <div className={styles.productList}>
         {productosFiltrados.length > 0 ? (
           productosFiltrados.map(product => (
-            <div key={product._id} className={styles.productCard} /* onClick={() => handleProductClick(product._id)} */>
-                        <img src={product.imagenes} alt={product.nombre} />
-                        <h2>{product.nombre}</h2>
-                        <p>${product.precio.toFixed(2)} <span>${product.promocion.toFixed(2)}</span></p>
-                            <button onClick={() => handleProductClick(product._id)}>Detalle de Producto</button>
-                    </div>
+            <div key={product._id} className={styles.productCard}>
+              <img src={product.imagenes} alt={product.nombre} />
+              <h2>{product.nombre}</h2>
+              <p>${product.precio.toFixed(2)} <span>${product.promocion.toFixed(2)}</span></p>
+              <button onClick={() => handleProductClick(product._id)}>Detalle de Producto</button>
+            </div>
           ))
         ) : (
           <p>No hay productos en esta categoría.</p>

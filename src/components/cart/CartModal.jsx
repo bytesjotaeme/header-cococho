@@ -47,8 +47,8 @@ const CartModal = ({ isVisible, onClose }) => {
             {cartItems.map((item, index) => (
               <li key={index}>
                 <img src={item.image} alt={item.name} />
-                <div>
-                  <h4>{item.name}</h4>
+                <div className='container-item-cart'>
+                  <h6>{item.name}</h6>
                   <p>Talle: {item.size}</p>
                   <p>Cantidad: {item.quantity}</p>
                   <p>Precio: ${typeof item.price === 'number' ? item.price.toFixed(2) : '0.00'}</p>

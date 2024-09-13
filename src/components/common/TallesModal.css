@@ -1,0 +1,45 @@
+/* TallesModal.css */
+.modal-talles .modal-dialog {
+    width: 50vw; /* Ancho del modal: 50% del ancho de la ventana */
+    max-width: none; /* Elimina cualquier limitación máxima de ancho */
+    /* margin: 0; Elimina el margen del modal */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: auto; /* Altura del modal dialog: 100% de la altura de la ventana */
+}
+.modal-talles-header {
+    font-family: 'Poppins', sans-serif;
+    background-color: #32CD32;
+}
+.modal-talles .modal-content {
+    height: auto; /* Ajusta la altura del contenido según el contenido */
+    max-height: 80vh; /* Limita la altura máxima del contenido del modal */
+    overflow: hidden; /* Elimina el desbordamiento no deseado */
+}
+
+.modal-body-talles {
+    overflow: auto; /* Habilita el desplazamiento si el contenido es demasiado grande */
+}
+
+.modal-body-talles img {
+    width: 100%; /* La imagen se ajusta al ancho del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    max-height: 70vh; /* Limita la altura máxima de la imagen para evitar desbordamiento */
+}
+/* Media Query para pantallas pequeñas */
+@media (max-width: 767px) {
+    .modal-talles .modal-dialog {
+        width: 90vw; /* Ancho del modal: 90% del ancho de la ventana en pantallas pequeñas */
+        height: auto; /* Ajusta la altura automáticamente según el contenido */
+        margin: 20px; /* Agrega un margen pequeño para evitar que el modal toque los bordes de la pantalla */
+    }
+
+    .modal-talles .modal-content {
+        max-height: 70vh; /* Limita la altura máxima del contenido del modal */
+    }
+
+    .modal-body-talles img {
+        max-height: 50vh; /* Limita la altura máxima de la imagen para pantallas pequeñas */
+    }
+}

@@ -65,7 +65,7 @@ const ProductosOferta = () => {
     };
 
     const handleViewMoreProducts = () => {
-        navigate('/bebes');
+        navigate('/productos');
     };
 
     return (
