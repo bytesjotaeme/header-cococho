@@ -21,7 +21,7 @@ const EditCarouselImages = () => {
     };
 
     fetchImages();
-  }, []);
+  }, [backServerUrl]);
 
   const handleImageChange = (index) => (event) => {
     const file = event.target.files[0];
@@ -38,7 +38,7 @@ const EditCarouselImages = () => {
     formData.append('image', selectedImages[index]);
 
     try {
-      await axios.put(`${backServerUrl}/admin/images/${images[index]._id}`, formData, {
+      await axios.put(`${backServerUrl}admin/images/${images[index]._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -51,7 +51,7 @@ const EditCarouselImages = () => {
 
   const handleDelete = (index) => async () => {
     try {
-      await axios.delete(`${backServerUrl}/admin/images/${images[index]._id}`);
+      await axios.delete(`${backServerUrl}admin/images/${images[index]._id}`);
       alert('Imagen eliminada con éxito');
       setImages(images.filter((_, i) => i !== index));
     } catch (error) {
